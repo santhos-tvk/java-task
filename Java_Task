@@ -1,0 +1,60 @@
+package first_project;
+
+public class Assignment {
+
+	public static void main(String[] args) {
+		
+		int transaction[][] = {{5001,4},{5004,6},{5001,0},{5005,1},{5003,3}};
+		
+		int itemQuantity[] = new int[5];
+		
+		int itemprices[] = {100,200,250,300,350};
+		
+		for(int i=0;i<transaction.length;i++)
+		{
+			int id = transaction[i][0];
+			int quantity = transaction[i][1];
+			int index = id - 5001;
+			
+			itemQuantity[index] +=quantity;
+		}
+		
+		int max = 0;
+		int itemIndex = 0;
+		
+		for(int i=0;i<itemQuantity.length;i++)
+		{
+			if(itemQuantity[i] > max)
+			{
+				max = itemQuantity[i];
+				itemIndex = i;
+			}
+		}
+		
+		int topsell = 5001+itemIndex;
+		
+		System.out.println("top selling item id:"+topsell+",Quantity sold :"+max);
+		
+		double totalbill = 0;
+		
+		
+		for(int i = 0;i<itemQuantity.length;i++)
+		{
+			int quantity = itemQuantity[i];
+			int prices = itemprices[i];
+			double totalprice = quantity*prices;
+			
+			
+			if((5001+i)==5004 || (5001+i)==5005)
+			{
+				totalprice *=0.8;
+			}
+			
+			totalbill += totalprice;
+		}
+		
+		System.out.println("Total bill:"+totalbill);
+
+	}
+
+}
